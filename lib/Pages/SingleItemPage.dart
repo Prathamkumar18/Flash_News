@@ -1,8 +1,29 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:news_app/Theme/themes.dart';
 
 class SingleItemPage extends StatelessWidget {
-  const SingleItemPage({super.key});
+  String category;
+  String? author;
+  String? title;
+  String? description;
+  String? url;
+  String? urlToImage;
+  String? publishedAt;
+  String? content;
+
+  SingleItemPage({
+    Key? key,
+    required this.category,
+    required this.author,
+    required this.title,
+    required this.description,
+    required this.url,
+    required this.urlToImage,
+    required this.publishedAt,
+    required this.content,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +34,7 @@ class SingleItemPage extends StatelessWidget {
           height: 375,
           decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("Assets/Technology.jpeg"), fit: BoxFit.cover),
+                image: NetworkImage("$urlToImage"), fit: BoxFit.cover),
           ),
         ),
         Container(
@@ -22,7 +43,8 @@ class SingleItemPage extends StatelessWidget {
           width: 400,
           height: 530,
           decoration: BoxDecoration(
-              color: Color.fromARGB(255, 221, 241, 244),
+              border: Border.all(color: Colors.white, width: 2),
+              color: Color.fromARGB(255, 248, 239, 255),
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(40), topRight: Radius.circular(40))),
           child: Column(children: [
@@ -30,7 +52,7 @@ class SingleItemPage extends StatelessWidget {
               height: 30,
             ),
             Text(
-              "Irfan Pathan posts video with Sania Mirza from her farewell bash; netizen writes, 'Shoaib Malik wants to know your location",
+              "$title",
               style: TextStyle(
                   fontSize: 22, color: b, fontWeight: FontWeight.bold),
             ),
@@ -54,7 +76,7 @@ class SingleItemPage extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      "Entertainment",
+                      "$category",
                       style: TextStyle(
                           color: w, fontSize: 10, fontWeight: FontWeight.bold),
                     ),
@@ -74,7 +96,7 @@ class SingleItemPage extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      "Time: 12:04 pm.",
+                      "Date: ${publishedAt}",
                       style: TextStyle(
                           color: w, fontSize: 11, fontWeight: FontWeight.bold),
                     ),
@@ -94,7 +116,7 @@ class SingleItemPage extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      "Author:Pratham.",
+                      "Author:$author",
                       style: TextStyle(
                           color: w, fontSize: 10, fontWeight: FontWeight.bold),
                     ),
@@ -102,16 +124,25 @@ class SingleItemPage extends StatelessWidget {
                 ),
               ],
             ),
+            SizedBox(
+              height: 10,
+            ),
+            Divider(
+              color: Colors.black,
+            ),
+            SizedBox(
+              height: 20,
+            ),
             Container(
-              height: 310,
+              height: 290,
               width: 380,
               padding: EdgeInsets.all(10),
               child: SingleChildScrollView(
                 child: Container(
                   child: Text(
-                    "Harvey He wasnt among the quartet of attackers who scored, but the presence of Harvey Elliott in Liverpools starting XI proved crucial in their historic 7-0 thrashing of Manchester United yesterdaHe wasnt among the quartet of attackers who scored, but the presence of Harvey Elliott in Liverpools starting XI proved crucial in their historic 7-0 thrashing of Manchester United yesterda Elliott was a surprise name in the Liverpool XI against Man United, but he played a crucial part in Cody Gakpo's fine displayHarvey He wasnt among the quartet of attackers who scored, but the presence of Harvey Elliott in Liverpools starting XI proved crucial in their historic 7-0 thrashing of Manchester United yesterdaHe wasnt among the quartet of attackers who scored, but the presence of Harvey Elliott in Liverpools starting XI proved crucial in their historic 7-0 thrashing of Manchester United yesterda Elliott was a surprise name in the Liverpool XI against Man United, but he played a crucial part in Cody Gakpo's fine display",
+                    "$content",
                     style: TextStyle(
-                        fontSize: 16, color: b, fontWeight: FontWeight.w400),
+                        fontSize: 20, color: b, fontWeight: FontWeight.w400),
                   ),
                 ),
               ),

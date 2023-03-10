@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:news_app/Pages/SingleItemPage.dart';
 import 'package:news_app/Theme/themes.dart';
-
 import 'package:news_app/Widget/ListWidget.dart';
 
 class CategoryPages extends StatelessWidget {
@@ -65,31 +63,16 @@ class CategoryPages extends StatelessWidget {
           ),
           SingleChildScrollView(
             child: Container(
-              height: 695,
-              width: 400,
-              padding: EdgeInsets.only(left: 16, top: 50),
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 244, 243, 253),
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40)),
-              ),
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SingleItemPage()),
-                        );
-                      },
-                      child: ListWidget(index: index));
-                },
-                itemCount: 8,
-              ),
-            ),
+                height: 695,
+                width: 400,
+                padding: EdgeInsets.only(left: 16, top: 50),
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 244, 243, 253),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40)),
+                ),
+                child: ListWidget(category: "${categoryTitle.toLowerCase()}")),
           ),
         ],
       ),

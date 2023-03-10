@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/Model/ArticleModel.dart';
 import 'package:news_app/Pages/CategoryPages.dart';
+import 'package:news_app/Services/ApiService.dart';
 import 'package:news_app/Theme/themes.dart';
 import 'package:news_app/Widget/ListWidget.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
+  HomePage({super.key});
+  ApiService service = ApiService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,7 +105,8 @@ class HomePage extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const CategoryPages(
-                                    categoryTitle: "Technology")),
+                                      categoryTitle: "Technology",
+                                    )),
                           );
                         },
                         child: CardImage("Technology")),
@@ -187,17 +190,7 @@ class HomePage extends StatelessWidget {
               SizedBox(
                 height: 15,
               ),
-              Container(
-                height: 210,
-                width: 400,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return ListWidget(index: index);
-                  },
-                  itemCount: 8,
-                ),
-              )
+              ListWidget(category: "in"),
             ]),
       ),
     );
