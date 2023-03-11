@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:news_app/Theme/themes.dart';
+import 'package:share_plus/share_plus.dart';
 
 class SingleItemPage extends StatelessWidget {
   String category;
@@ -76,7 +77,7 @@ class SingleItemPage extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      "$category",
+                      category != "in" ? "$category" : "India",
                       style: TextStyle(
                           color: w, fontSize: 10, fontWeight: FontWeight.bold),
                     ),
@@ -140,7 +141,7 @@ class SingleItemPage extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Container(
                   child: Text(
-                    "$content",
+                    "$description" + "\n\n" + "$content" + "\n\n" + "$url",
                     style: TextStyle(
                         fontSize: 20, color: b, fontWeight: FontWeight.w400),
                   ),
@@ -149,16 +150,22 @@ class SingleItemPage extends StatelessWidget {
             ),
           ]),
         ),
-        Container(
-          height: 65,
-          width: 65,
-          margin: EdgeInsets.only(top: 310, left: 280),
-          decoration: BoxDecoration(
-              color: Colors.blue, borderRadius: BorderRadius.circular(40)),
-          child: Icon(
-            Icons.share,
-            size: 30,
-            color: Colors.white,
+        InkWell(
+          onTap: () async {
+            final shareUrl = url;
+            await Share.share("$title\n\n$url");
+          },
+          child: Container(
+            height: 65,
+            width: 65,
+            margin: EdgeInsets.only(top: 310, left: 280),
+            decoration: BoxDecoration(
+                color: Colors.blue, borderRadius: BorderRadius.circular(40)),
+            child: Icon(
+              Icons.share,
+              size: 30,
+              color: Colors.white,
+            ),
           ),
         )
       ]),
