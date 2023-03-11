@@ -4,6 +4,7 @@ import 'package:news_app/Pages/SingleItemPage.dart';
 import 'package:news_app/Services/ApiService.dart';
 
 import 'package:news_app/Theme/themes.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../Model/ArticleModel.dart';
 
@@ -139,7 +140,8 @@ class ListWidget extends StatelessWidget {
                                 width: 50,
                                 decoration: BoxDecoration(
                                     color: Color.fromARGB(255, 189, 224, 234),
-                                    borderRadius: BorderRadius.circular(30)),
+                                    borderRadius: BorderRadius.circular(30)
+                                    ),
                                 child: Icon(
                                   Icons.arrow_forward_ios,
                                   size: 25,
@@ -155,11 +157,57 @@ class ListWidget extends StatelessWidget {
                 ),
               );
             } else {
-              return Center(
-                child: CircularProgressIndicator(),
+              return Shimmer.fromColors(
+                baseColor: Color.fromARGB(255, 0, 17, 255),
+                highlightColor: Color.fromARGB(255, 70, 255, 243),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: 10,
+                  itemBuilder: ((context, index) {
+                    return Container(
+                      height: 125,
+                      width: 230,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            DummyShimmer(110, 120),
+                            Container(
+                              height: 120,
+                              width: 250,
+                              child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    DummyShimmer(20, 230),
+                                    DummyShimmer(20, 230),
+                                    DummyShimmer(20, 230),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        DummyShimmer(20, 100),
+                                        DummyShimmer(20, 100),
+                                      ],
+                                    )
+                                  ]),
+                            )
+                          ]),
+                    );
+                  }),
+                ),
               );
             }
           })),
+    );
+  }
+
+  Widget DummyShimmer(double h, double w) {
+    return Container(
+      height: h,
+      width: w,
+      decoration: BoxDecoration(
+          color: Colors.black.withOpacity(0.04),
+          borderRadius: BorderRadius.all(Radius.circular(16))),
     );
   }
 }
